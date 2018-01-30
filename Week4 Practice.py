@@ -8,4 +8,4 @@ def nfruits(fruitBag, roadFruit):
 
     return fruitBag
 
-#Checking the delete
+#Checking the delete.
