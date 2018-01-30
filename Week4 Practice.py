@@ -8,7 +8,4 @@ def nfruits(fruitBag, roadFruit):
 
     return fruitBag
 
-#making some changes here. Let's see what happens. 
-#Good thing you are the fucking man.
-
-#Good job on being the man.
+#Checking the delete
