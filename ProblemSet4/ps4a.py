@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "C:/Users/adamyarschenko/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
+WORDLIST_FILENAME = "C:/Users/The Supreme Being/source/repos/EdX-6.001x_A/ProblemSet4/words.txt"
 
 def loadWords():
     """
@@ -76,7 +76,15 @@ def getWordScore(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    scoreLib = SCRABBLE_LETTER_VALUES
+    score = 0
+    for letter in word:
+        if letter in SCRABBLE_LETTER_VALUES.keys():
+            score += SCRABBLE_LETTER_VALUES[letter]
+    score = score * len(word)
+    if len(word) == n:
+        score += 50
+    return score
 
 
 
