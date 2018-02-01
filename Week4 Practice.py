@@ -1,4 +1,6 @@
 def nfruits(fruitBag, roadFruit):
+    assert not len(fruitBag) == 0, 'No fruit in the bag'
+    assert not len(roadFruit) == 0, 'No road fruit eaten'
     for letter in roadFruit:
         if letter in fruitBag.keys():
             fruitBag[letter] -= 1
@@ -6,6 +8,4 @@ def nfruits(fruitBag, roadFruit):
         if key not in roadFruit:
             fruitBag[key] += 1
 
-    return fruitBag
-
-#Checking the delete.
+    return max(fruitBag.values())
