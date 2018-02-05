@@ -143,6 +143,8 @@ def dealHand(n):
 #
 # Problem #2: Update a hand by removing letters
 #
+hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
+word = 'quail'
 def updateHand(hand, word):
     """
     Assumes that 'hand' has all the letters in word.
@@ -159,7 +161,15 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    newHand = {}
+    for key in hand:
+        newHand[key] = hand.get(key,0)
+
+    for letter in word:
+        assert newHand[letter] > -1, 'Not enough letters in hand'
+        newHand[letter] = newHand[letter] - 1
+
+    return newHand
 
 
 
@@ -177,8 +187,18 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
+    freqDict = {}
+    if word in wordList:
+        for letter in word:
+            if letter not in hand:
+                return False
+        freqDict = getFrequencyDict(word)
+        for letter in freqDict:
+            if freqDict[letter] > hand[letter]:
+                return False
+        return True
+    else:
+        return False
 
 #
 # Problem #4: Playing a hand
