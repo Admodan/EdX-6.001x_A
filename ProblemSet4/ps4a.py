@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "C:/Users/adamyarschenko/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
+WORDLIST_FILENAME = "C:/Users/The Supreme Being/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
 
 def loadWords():
     """
@@ -212,8 +212,8 @@ def calculateHandlen(hand):
     return count
 
 
-wordList = ['cat', 'monkey', 'pain', 'suffering']
-hand = {'c': 1, 'a': 2, 't': 1, 'm': 1, 'o': 1, 'p': 1, 'i': 1, 'n':1}
+#wordList = ['cat', 'monkey', 'pain', 'suffering']
+#hand = {'c': 1, 'a': 2, 't': 1, 'm': 1, 'o': 1, 'p': 1, 'i': 1, 'n':1}
 def playHand(hand, wordList, n):
     """
     Allows the user to play the given hand, as follows:
@@ -254,26 +254,23 @@ def playHand(hand, wordList, n):
         if count <= 0:
             isHandEmpty = True
         # Display the hand
-        print('Current hand: ')
+        print 'Current Hand: ',
         displayHand(newHand)
-        print('Below displayHand')
-        print('displayHand with newHand on same line: ')
-        print('displayHand with hand on same line: '), displayHand(hand)
         # Ask user for input
         userWord = raw_input("Enter a word, or '.' to indicate you're finished")
         # If the input is a single period:
         if userWord == '.':
             # End the game (break out of the loop)
-            isHandEmpty = True
+            break
         # Otherwise (the input is not a single period):
         else:
             # If the word is not valid:
-            if isValidWord(userWord, hand, wordList) == False:
+            if isValidWord(userWord, newHand, wordList) == False:
                 # Reject invalid word (print a message followed by a blank line)
                 print('Not a valid word')
                 print
             # Otherwise (the word is valid):
-            if isValidWord(userWord, hand, wordList) == True:
+            if isValidWord(userWord, newHand, wordList) == True:
                 totalScore += getWordScore(userWord, n)
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
                 print('That word = ' + str(getWordScore(userWord, n)) + ' points. Total score = ' + str(totalScore))
@@ -282,7 +279,10 @@ def playHand(hand, wordList, n):
                 newHand = updateHand(newHand, userWord)
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
-    print('Total score is = ' + str(totalScore))
+    if user_Input == '.':
+        print 'Goodbye! Total score:', totalScore, 'points. '
+    elif sum(newHand.values()) == 0:
+        print 'Ran out of letters. Total score: ', totalScore, ' points.'
 
 #
 # Problem #5: Playing a game
