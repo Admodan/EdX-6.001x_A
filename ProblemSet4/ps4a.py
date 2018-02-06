@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "C:/Users/The Supreme Being/source/repos/EdX-6.001x_A/ProblemSet4/words.txt"
+WORDLIST_FILENAME = "C:/Users/adamyarschenko/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
 
 def loadWords():
     """
@@ -104,12 +104,8 @@ def displayHand(hand):
     hand: dictionary (string -> int)
     """
     for key in hand.keys():
-        print('Key is = ' + key)
         for j in range(hand[key]):
-            print('j is ' + str(j))
-            print('range(hand[key]) = ' + str(range(hand[key])))
-            print key             # print all on the same line
-            print
+            print key,             # print all on the same line
     print                               # print an empty line
 
 #
@@ -143,8 +139,7 @@ def dealHand(n):
 #
 # Problem #2: Update a hand by removing letters
 #
-hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
-word = 'quail'
+
 def updateHand(hand, word):
     """
     Assumes that 'hand' has all the letters in word.
@@ -211,10 +206,14 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    count = 0
+    for letter in hand:
+        count += hand[letter]
+    return count
 
 
-
+wordList = ['cat', 'monkey', 'pain', 'suffering']
+hand = {'c': 1, 'a': 2, 't': 1, 'm': 1, 'o': 1, 'p': 1, 'i': 1, 'n':1}
 def playHand(hand, wordList, n):
     """
     Allows the user to play the given hand, as follows:
@@ -237,35 +236,53 @@ def playHand(hand, wordList, n):
       n: integer (HAND_SIZE; i.e., hand size required for additional points)
       
     """
-    # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
+    # BEGIN PSEUDOCODE <-- Remove this comment when you code this function;
+    # do your coding within the pseudocode (leaving those comments in-place!)
     # Keep track of the total score
-    
+    totalScore = 0
+    userWord = ''
+    newHand = {}
+    count = 0
     # As long as there are still letters left in the hand:
-    
+    isHandEmpty = False
+    for letter in hand:
+        newHand[letter] = hand.get(letter,0)
+    while isHandEmpty == False:
+        count = 0
+        for letter in newHand:
+            count += newHand[letter]
+        if count <= 0:
+            isHandEmpty = True
         # Display the hand
-        
+        print('Current hand: ')
+        displayHand(newHand)
+        print('Below displayHand')
+        print('displayHand with newHand on same line: ')
+        print('displayHand with hand on same line: '), displayHand(hand)
         # Ask user for input
-        
+        userWord = raw_input("Enter a word, or '.' to indicate you're finished")
         # If the input is a single period:
-        
+        if userWord == '.':
             # End the game (break out of the loop)
-
-            
+            isHandEmpty = True
         # Otherwise (the input is not a single period):
-        
+        else:
             # If the word is not valid:
-            
+            if isValidWord(userWord, hand, wordList) == False:
                 # Reject invalid word (print a message followed by a blank line)
-
+                print('Not a valid word')
+                print
             # Otherwise (the word is valid):
-
+            if isValidWord(userWord, hand, wordList) == True:
+                totalScore += getWordScore(userWord, n)
                 # Tell the user how many points the word earned, and the updated total score, in one line followed by a blank line
-                
+                print('That word = ' + str(getWordScore(userWord, n)) + ' points. Total score = ' + str(totalScore))
+                print
                 # Update the hand 
-                
+                newHand = updateHand(newHand, userWord)
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
-
+    print('Total score is = ' + str(totalScore))
 
 #
 # Problem #5: Playing a game
