@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "C:/Users/The Supreme Being/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
+WORDLIST_FILENAME = "C:/Users/adamyarschenko/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
 
 def loadWords():
     """
@@ -29,14 +29,14 @@ def loadWords():
     Depending on the size of the word list, this function may
     take a while to finish.
     """
-    print "Loading word list from file..."
+    print("Loading word list from file...")
     # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r', 0)
+    inFile = open(WORDLIST_FILENAME, 'r')
     # wordList: list of strings
     wordList = []
     for line in inFile:
         wordList.append(line.strip().lower())
-    print "  ", len(wordList), "words loaded."
+    print ("  "), len(wordList), print("words loaded.")
     return wordList
 
 def getFrequencyDict(sequence):
@@ -105,7 +105,7 @@ def displayHand(hand):
     """
     for key in hand.keys():
         for j in range(hand[key]):
-            print key,             # print all on the same line
+            print(key, end=" ")             # print all on the same line
     print                               # print an empty line
 
 #
@@ -253,11 +253,11 @@ def playHand(hand, wordList, n):
             count += newHand[letter]
         if count <= 0:
             isHandEmpty = True
+            break
         # Display the hand
-        print 'Current Hand: ',
-        displayHand(newHand)
+        print('Current Hand: ' + str(displayHand(newHand)))
         # Ask user for input
-        userWord = raw_input("Enter a word, or '.' to indicate you're finished")
+        userWord = input("Enter a word, or '.' to indicate you're finished")
         # If the input is a single period:
         if userWord == '.':
             # End the game (break out of the loop)
@@ -279,10 +279,12 @@ def playHand(hand, wordList, n):
                 newHand = updateHand(newHand, userWord)
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
-    if user_Input == '.':
-        print 'Goodbye! Total score:', totalScore, 'points. '
+    if userWord == '.':
+        print('Goodbye! Total score:'), totalScore, 
+        print('points. ')
     elif sum(newHand.values()) == 0:
-        print 'Ran out of letters. Total score: ', totalScore, ' points.'
+        print('Ran out of letters. Total score:' + totalScore + ' points.')
+        #print('points.')
 
 #
 # Problem #5: Playing a game
@@ -301,7 +303,7 @@ def playGame(wordList):
     2) When done playing the hand, repeat from step 1    
     """
     # TO DO ... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this line when you code the function
+    print("playGame not yet implemented.") # <-- Remove this line when you code the function
    
 
 
