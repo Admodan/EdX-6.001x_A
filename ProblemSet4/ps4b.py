@@ -7,27 +7,7 @@ import time
 # Problem #6: Computer chooses a word
 #
 #
-WORDLIST_FILENAME = "C:/Users/adamyarschenko/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
-
-def loadWords():
-    """
-    Returns a list of valid words. Words are strings of lowercase letters.
-    
-    Depending on the size of the word list, this function may
-    take a while to finish.
-    """
-    print("Loading word list from file...")
-    # inFile: file
-    inFile = open(WORDLIST_FILENAME, 'r')
-    # wordList: list of strings
-    wordList = []
-    for line in inFile:
-        wordList.append(line.strip().lower())
-    print ("", len(wordList), "words loaded.")
-    return wordList
-
-wordList = loadWords()
-
+wordList = ['appels', 'acta', 'immanent', 'ait']
 def compChooseWord(hand, wordList, n):
     """
     Given a hand and a wordList, find the word that gives 
@@ -91,7 +71,23 @@ def compPlayHand(hand, wordList, n):
     wordList: list (string)
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    newHand = hand
+    validWord = True
+    wordScore = 0
+    totalScore = 0
+
+    while validWord == True:
+        print('Current hand:', end = ' ')
+        displayHand(newHand)
+        print()
+        bestWord = compChooseWord(newHand, wordList, n)
+        validWord = isValidWord(bestWord, newHand, wordList)
+        if validWord == True:
+            wordScore = getWordScore(bestWord, n)
+            totalScore = totalScore + wordScore
+            print('"', bestWord, '"', 'earned', wordScore, 'points. Total:', totalScore, 'points.')
+            newHand = updateHand(newHand, bestWord)
+    print('Total Score:', totalScore, 'points.')
     
 #
 # Problem #8: Playing a game
