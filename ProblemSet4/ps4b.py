@@ -7,6 +7,27 @@ import time
 # Problem #6: Computer chooses a word
 #
 #
+WORDLIST_FILENAME = "C:/Users/adamyarschenko/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
+
+def loadWords():
+    """
+    Returns a list of valid words. Words are strings of lowercase letters.
+    
+    Depending on the size of the word list, this function may
+    take a while to finish.
+    """
+    print("Loading word list from file...")
+    # inFile: file
+    inFile = open(WORDLIST_FILENAME, 'r')
+    # wordList: list of strings
+    wordList = []
+    for line in inFile:
+        wordList.append(line.strip().lower())
+    print ("", len(wordList), "words loaded.")
+    return wordList
+
+wordList = loadWords()
+
 def compChooseWord(hand, wordList, n):
     """
     Given a hand and a wordList, find the word that gives 
@@ -23,24 +44,29 @@ def compChooseWord(hand, wordList, n):
 
     returns: string or None
     """
-    # BEGIN PSEUDOCODE <-- Remove this comment when you code this function; do your coding within the pseudocode (leaving those comments in-place!)
     # Create a new variable to store the maximum score seen so far (initially 0)
-
+    maxScore = 0
     # Create a new variable to store the best word seen so far (initially None)  
-
+    bestWord = ''
     # For each word in the wordList
-
+    for word in wordList:
         # If you can construct the word from your hand
         # (hint: you can use isValidWord, or - since you don't really need to test if the word is in the wordList - you can make a similar function that omits that test)
-
+        if isValidWord(word, hand, wordList) == True:
             # Find out how much making that word is worth
-
+            wordScore = getWordScore(word, n)
             # If the score for that word is higher than your best score
-
+            if wordScore > maxScore:
                 # Update your best score, and best word accordingly
-
-
+                maxScore = wordScore
+                bestWord = word
     # return the best word you found.
+    if len(bestWord) == 0:
+        return None
+    return bestWord
+
+
+
 
 
 #
@@ -96,7 +122,7 @@ def playGame(wordList):
     wordList: list (string)
     """
     # TO DO... <-- Remove this comment when you code this function
-    print "playGame not yet implemented." # <-- Remove this when you code this function
+    print("playGame not yet implemented.") # <-- Remove this when you code this function
 
         
 #
