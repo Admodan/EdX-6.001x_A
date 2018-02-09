@@ -286,8 +286,8 @@ def playHand(hand, wordList, n):
 #
 # Problem #5: Playing a game
 # 
-
-def playGame(wordList):
+    '''
+def playGameC(wordList):
     """
     Allow the user to play an arbitrary number of hands.
 
@@ -319,7 +319,7 @@ def playGame(wordList):
             print('Invalid command.')
     return None
     #print('Bye bitches!')
-
+    '''
 
 
 

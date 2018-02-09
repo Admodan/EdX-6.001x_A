@@ -7,7 +7,7 @@ import time
 # Problem #6: Computer chooses a word
 #
 #
-wordList = ['appels', 'acta', 'immanent', 'ait']
+#wordList = ['appels', 'acta', 'immanent', 'ait']
 def compChooseWord(hand, wordList, n):
     """
     Given a hand and a wordList, find the word that gives 
@@ -28,15 +28,30 @@ def compChooseWord(hand, wordList, n):
     maxScore = 0
     # Create a new variable to store the best word seen so far (initially None)  
     bestWord = ''
+    validWord = True
+    freqDict = {}
     # For each word in the wordList
     for word in wordList:
+        validWord = True
         # If you can construct the word from your hand
         # (hint: you can use isValidWord, or - since you don't really need to test if the word is in the wordList - you can make a similar function that omits that test)
-        if isValidWord(word, hand, wordList) == True:
+        for letter in word:
+            if letter not in hand:
+                validWord = False
+                break
+            freqDict = getFrequencyDict(word)
+            for letter in freqDict:
+                try:
+                    if freqDict[letter] > hand[letter]:
+                        validWord = False
+                        break
+                except KeyError:
+                    break
+        if validWord == True:
             # Find out how much making that word is worth
             wordScore = getWordScore(word, n)
             # If the score for that word is higher than your best score
-            if wordScore > maxScore:
+            if wordScore >= maxScore:
                 # Update your best score, and best word accordingly
                 maxScore = wordScore
                 bestWord = word
@@ -85,8 +100,17 @@ def compPlayHand(hand, wordList, n):
         if validWord == True:
             wordScore = getWordScore(bestWord, n)
             totalScore = totalScore + wordScore
-            print('"', bestWord, '"', 'earned', wordScore, 'points. Total:', totalScore, 'points.')
+            print("'{0}'".format(bestWord), 'earned', wordScore, 'points. Total:', totalScore, 'points.' )
+            print()
             newHand = updateHand(newHand, bestWord)
+            validWord = False
+            for key in newHand:
+                if newHand[key] != 0:
+                    validWord = True
+        if len(newHand) == 0:
+            validWord = False
+        if bestWord == None:
+            validWord = False
     print('Total Score:', totalScore, 'points.')
     
 #
@@ -117,8 +141,46 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
+    words = wordList
+    gameOn = True
+    keepAsking = True
+    hand = {}
+    whoPlays = ""
+
+    while gameOn == True:
+        keepAsking = True
+        userInput = input('Enter n for new hand, r to replay last hand, or e to end game: ')
+        print('userInput:', userInput)
+        if userInput == 'e':
+            gameOn = False
+            break
+        elif userInput == 'n':
+            hand = dealHand(HAND_SIZE)
+            keepAsking = False
+        elif userInput == 'r': 
+            if len(hand) == 0:
+                print()
+                print('You have not played a hand yet. Please play a new hand first!')
+                print()
+                keepAsking = False
+        elif userInput != 'n' and userInput != 'r' and userInput != 'e':
+            print('Invalid command.')
+
+        while keepAsking == True and userInput == 'r' or userInput == 'n':
+            if userInput == 'n' or userInput == 'r' and len(hand) != 0:
+                print()
+                whoPlays = input('Enter u to play with yourself, or c to have the computer play')
+                print()
+            if whoPlays == 'c':
+                compPlayHand(hand, words, HAND_SIZE)
+                keepAsking = False
+            elif whoPlays == 'u':
+                playHand(hand, words, HAND_SIZE)
+                keepAsking = False
+            else:
+                print('Invalid command.')
+    print('Bye')
+    return None
 
         
 #
