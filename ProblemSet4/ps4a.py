@@ -20,7 +20,7 @@ SCRABBLE_LETTER_VALUES = {
 # Helper code
 # (you don't need to understand this helper code)
 
-WORDLIST_FILENAME = "C:/Users/adamyarschenko/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
+WORDLIST_FILENAME = "C:/Users/The Supreme Being/Source/Repos/EdX-6.001x_A/ProblemSet4/words.txt"
 
 def loadWords():
     """
@@ -35,7 +35,8 @@ def loadWords():
     # wordList: list of strings
     wordList = []
     for line in inFile:
-        wordList.append(line.strip().lower())
+        if len(line) < 7:
+            wordList.append(line.strip().lower())
     print ("", len(wordList), "words loaded.")
     return wordList
 

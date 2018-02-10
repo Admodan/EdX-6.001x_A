@@ -7,7 +7,7 @@ import time
 # Problem #6: Computer chooses a word
 #
 #
-#wordList = ['appels', 'acta', 'immanent', 'ait']
+wordList = ['appels', 'acta', 'immanent', 'ait', 'tatters', 'stretta', 'me', 'you', 'axled', 'zap', 'happy', 'hypha', 'lead']
 def compChooseWord(hand, wordList, n):
     """
     Given a hand and a wordList, find the word that gives 
@@ -156,7 +156,7 @@ def playGame(wordList):
             break
         elif userInput == 'n':
             hand = dealHand(HAND_SIZE)
-            keepAsking = False
+            keepAsking = True
         elif userInput == 'r': 
             if len(hand) == 0:
                 print()
@@ -165,12 +165,12 @@ def playGame(wordList):
                 keepAsking = False
         elif userInput != 'n' and userInput != 'r' and userInput != 'e':
             print('Invalid command.')
+            keepAsking = False
 
-        while keepAsking == True and userInput == 'r' or userInput == 'n':
-            if userInput == 'n' or userInput == 'r' and len(hand) != 0:
-                print()
-                whoPlays = input('Enter u to play with yourself, or c to have the computer play')
-                print()
+        while keepAsking == True:
+            print()
+            whoPlays = input('Enter u to play with yourself, or c to have the computer play')
+            print()
             if whoPlays == 'c':
                 compPlayHand(hand, words, HAND_SIZE)
                 keepAsking = False
