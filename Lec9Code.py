@@ -1,3 +1,10 @@
+#Many people have complained in the discussion that the/
+# method with which they count steps seems to be flawed.
+#Things like skipping the for loop if there is an empty list,/ 
+# even though you still need to check the list is empty.
+#Super useful website to step through code and see the variables/
+# and environment: http://pythontutor.com/
+
 #Problem 2
 #For the worst and best case scenarios, fill in how many/
 #steps it would take for the program to run.
@@ -50,3 +57,35 @@ def program3(L):
 #Best case:3. If the list is empty only the assignment statements and return/
 #are executed.
 #Worst case: 7*n + 2. 
+
+#Problem 3:
+#Fill in best case and worst case number of steps for each program below.
+def program1(L):
+    multiples = []
+    for x in L:
+        for y in L:
+            multiples.append(x*y)
+    return multiples
+#Best case:2
+#Wors case:3*n^2 + n + 2
+#Explanation: https://courses.edx.org/courses/course-v1:MITx+6.00.1x_9+2T2016/
+#courseware/0892c070e6464647bb8e9b9aa753d395/videosequence:Lecture_8/
+
+def program2(L):
+    squares = []
+    for x in L:
+        for y in L:
+            if x == y:
+                squares.append(x*y)
+    return squares
+#Best case:2
+#Wors case:4*n^2 + n +2
+
+def program3(L1, L2):
+    intersection = []
+    for elt in L1:
+        if elt in L2:
+            intersection.append(elt)
+    return intersection
+#Best case:2
+#Wors case:n^2 + 2*n + 2
