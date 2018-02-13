@@ -33,3 +33,5 @@ def satisfiesF(L):
         if f(str(L[i])) == False:
             del L[i]
     return len(L)
+
+#At the bottom here is some testing to see what happens when I push
