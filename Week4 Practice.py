@@ -10,7 +10,7 @@ def satisfiesF(L):
     for item in L:
         if f(item) == True:
             trueList.append(item)
-    L = trueList
+    L[:] = trueList
     return len(L)
 
 #L = ['ass', 'hat', 'baoot', 'squeeze', 'squish', 'affirmation', '', 'nope', 'n', 'a']
