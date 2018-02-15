@@ -150,7 +150,6 @@ def playGame(wordList):
     while gameOn == True:
         keepAsking = True
         userInput = input('Enter n for new hand, r to replay last hand, or e to end game: ')
-        print('userInput:', userInput)
         if userInput == 'e':
             gameOn = False
             break
@@ -179,7 +178,7 @@ def playGame(wordList):
                 keepAsking = False
             else:
                 print('Invalid command.')
-    print('Bye')
+    #print('Bye')
     return None
 
         
