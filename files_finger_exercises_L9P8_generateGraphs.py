@@ -10,7 +10,7 @@ import string
 def loadWords():
     '''Returns a list containing the words from PSET 4'''
 
-    fin = open('words.txt', 'r')
+    fin = open('C:/Users/The Supreme Being/source/repos/EdX-6.001x_A/ProblemSet4/words.txt', 'r')
     wordList = []
     for line in fin:
         wordList.append(line.strip().lower())
@@ -51,8 +51,8 @@ def doHashing(hashFunction):
 def plotHash(hashFunction):
     ''' Takes as argument one of the hash functions defined. Plots frequency distribution
     of all the integers returned by the hash function.'''
-    
-    plt.bar(doHashing(hashFunction).keys(),doHashing(hashFunction).values(),facecolor='#9999ff', edgecolor='white')
+    hashDict = doHashing(hashFunction)
+    plt.bar(hashDict.keys(), hashDict.values(), facecolor='#9999ff', edgecolor='white')
     plt.ylabel('Number of words in wordlist')
     plt.xlabel('Hash')
     plt.title(hashFunction)
