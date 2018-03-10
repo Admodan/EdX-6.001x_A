@@ -122,67 +122,73 @@ Give the outputs and their type.
 #s = Coordinate(1,1)
 #q = Coordinate(1,1)
 
-class intSet(object):
-    """An intSet is a set of integers
-    The value is represented by a list of ints, self.vals.
-    Each int in the set occurs in self.vals exactly once."""
+#class intSet(object):
+#    """An intSet is a set of integers
+#    The value is represented by a list of ints, self.vals.
+#    Each int in the set occurs in self.vals exactly once."""
 
-    def __init__(self):
-        """Create an empty set of integers"""
-        self.vals = []
+#    def __init__(self):
+#        """Create an empty set of integers"""
+#        self.vals = []
 
-    def insert(self, e):
-        """Assumes e is an integer and inserts e into self"""
-        if not e in self.vals:
-            self.vals.append(e)
+#    def __len__(self):
+#        return len(self.vals)
 
-    def member(self, e):
-        """Assumes e is an integer
-        Returns True if e is in self, and False otherwise"""
-        return e in self.vals
+#    def insert(self, e):
+#        """Assumes e is an integer and inserts e into self"""
+#        if not e in self.vals:
+#            self.vals.append(e)
 
-    def remove(self, e):
-        """Assumes e is an integer and removes e from self
-        Raises ValueError if e is not in self
-        self.vals.remove() uses the remove method that is 
-        assosiated with lists. This is different from our 
-        function definition for remove. 
-        """
-        try:
-            self.vals.remove(e)
-        except:
-            raise ValueError(str(e) + ' not found')
+#    def member(self, e):
+#        """Assumes e is an integer
+#        Returns True if e is in self, and False otherwise"""
+#        return e in self.vals
 
-    def intersect(self, other):
-        intersectList = intSet()
-        for e in self.vals:
-            if e in other.vals:
-                intersectList.insert(e)
-        if len(intersectList) == 0:
-            return print('No elements in common')
-        return intersectList
+#    def remove(self, e):
+#        """Assumes e is an integer and removes e from self
+#        Raises ValueError if e is not in self
+#        self.vals.remove() uses the remove method that is 
+#        assosiated with lists. This is different from our 
+#        function definition for remove. 
+#        """
+#        try:
+#            self.vals.remove(e)
+#        except:
+#            raise ValueError(str(e) + ' not found')
 
-
-    def __str__(self):
-        """Returns a string representation of self"""
-        self.vals.sort()
-        return '{' + ','.join([str(e) for e in self.vals]) + '}'
-
-
+#    def intersect(self, other):
+#        ''' Assumes each member of the lists to be intersected
+#        only occurs once. Returns a list containing only the 
+#        memebers which occur in both lists.'''
+#        intersectList = intSet()
+#        for e in self.vals:
+#            if e in other.vals:
+#                intersectList.insert(e)
+#        if len(intersectList) == 0:
+#            return {}
+#        return intersectList
 
 
+#    def __str__(self):
+#        """Returns a string representation of self"""
+#        self.vals.sort()
+#        return '{' + ','.join([str(e) for e in self.vals]) + '}'
 
-s1 = intSet()
-s = intSet()
-print (s)
-s.insert(3)
-s.insert(4)
-s.insert(6)
-s.insert(7)
-s1.insert(3)
-s1.insert(4)
-s1.insert(6)
-s1.insert(7)
+
+
+
+
+#s1 = intSet()
+#s = intSet()
+#print (s)
+#s.insert(3)
+#s.insert(4)
+#s.insert(6)
+#s.insert(7)
+#s1.insert(3)
+#s1.insert(4)
+#s1.insert(6)
+#s1.insert(7)
 #s.insert(3)
 #print s
 #s.member(3)
@@ -193,3 +199,26 @@ s1.insert(7)
 #print s
 #s.remove(3)
 
+class Queue(object):
+    def __init__(self):
+        ''' Do something'''
+        self.lineup = []
+
+    def insert(self, e):
+        self.lineup.append(e)
+
+    def remove(self):
+        try:
+            return self.lineup.pop(0)
+        except:
+            raise ValueError
+
+
+q1 = Queue()
+q1.insert(12)
+q1.insert(3)
+q1.insert(2)
+q1.remove()
+q1.remove()
+q1.remove()
+q1.remove()
