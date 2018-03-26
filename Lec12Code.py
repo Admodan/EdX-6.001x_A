@@ -95,7 +95,7 @@ class Person(object):
         return (datetime.date.today() - self.birthday).days
 
     def __lt__(self, other):
-        """return True if self's ame is lexicographically
+        """return True if self's name is lexicographically
            less than other's name, and False otherwise"""
         if self.lastName == other.lastName:
             return self.name < other.name
@@ -133,20 +133,19 @@ class MITPerson(Person):
     def __lt__(self, other):
         return self.idNum < other.idNum
 
-# p1 = MITPerson('Eric')
-# p2 = MITPerson('John')
-# p3 = MITPerson('John')
-# p4 = Person('John')
+ p1 = MITPerson('Eric')
+ p2 = MITPerson('John')
+ p3 = MITPerson('John')
+ p4 = Person('John')
 
-# print p1
+ print (p1)
+ p1.getIdNum()
+ p2.getIdNum()
+ p1 < p2
+ p3 < p2
+ p4 < p1
 
-# p1.getIdNum()
-# p2.getIdNum()
-# p1 < p2
-# p3 < p2
-# p4 < p1
-
-# p1 < p4
+ p1 < p4
 
 
 class UG(MITPerson):
